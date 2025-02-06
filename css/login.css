@@ -1,0 +1,126 @@
+/* login.css */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body, html {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0;
+}
+
+header {
+    background-color: #4caf50;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+.container-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+form {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.senha-container {
+    position: relative;
+    width: 100%;
+}
+
+#olho {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    opacity: 0.6;
+    z-index: 1;
+}
+
+.input-field {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.btn {
+    width: 100%;
+    margin: 10px 0;
+}
+
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-box {
+    width: 100%;
+    max-width: 400px;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 800px;
+}
+
+.header-text {
+    text-align: left;
+}
+
+.header-text h1 {
+    font-size: 3em;
+    margin: 0;
+}
+
+.header-text p {
+    font-size: 1.2em;
+}
+
+.header-logo {
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+    position: absolute;
+    top: -10px;
+    right: 50px;
+    width: 200px;
+    height: 160px;
+    background-color: white;
+    border: 5px solid #006f3c;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    z-index: 2;
+    padding: 20px;
+}
+
+.header-logo img {
+    width: 100%;
+    height: auto;
+}

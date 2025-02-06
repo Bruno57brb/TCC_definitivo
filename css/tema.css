@@ -1,0 +1,134 @@
+/* Estilos para o tema escuro */
+.dark-theme {
+    background-color: #121212;
+    color: white;
+}
+
+.dark-theme .card {
+    background-color: #1e1e1e;
+    color: white;
+}
+
+.dark-theme .btn {
+    background-color: #333;
+    color: white;
+}
+
+.dark-theme h4{
+    color: black;
+}
+.dark-theme .tabela th{
+    color: black;
+}
+
+.dark-theme .aluno td{
+    color: white;
+}
+.dark-theme .sigae {
+    color: white;
+}
+
+.dark-theme p{
+    color: black;
+}
+
+.dark-theme td{
+    color: black;
+}
+/* Estilos para o tema claro */
+.light-theme {
+    background-color: white;
+    color: black;
+}
+
+.light-theme .card {
+    background-color: #fff;
+    color: black;
+}
+
+.light-theme .btn {
+    background-color: #eee;
+    color: black;
+}
+
+/* Estilos gerais */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.switch-container {
+    position: absolute;
+    top: 8%;
+    left: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+/* Corda com textura e curvatura */
+.cord {
+    width: 4px;
+    height: 20px;
+    background: linear-gradient(90deg, #4caf50, #006f3c, #4caf50);
+    border-radius: 2px;
+    transition: height 0.3s ease;
+    position: relative;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Efeito de curvatura na corda */
+.cord::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    background: #fff;
+    border-radius: 50%;
+    transform: translateX(-50%);
+}
+
+/* Botão com efeito 3D e reflexo */
+.switch {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(145deg, #4caf50, #006f3c);
+    border-radius: 50%;
+    border: 2px solid #006f3c;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+    box-shadow:
+        0 4px 6px rgba(0, 0, 0, 0.2),
+        inset 0 2px 4px rgba(255, 255, 255, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2em;
+    color: #fff;
+    position: relative;
+}
+
+/* Reflexo no botão */
+.switch::after {
+    content: '';
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+    border-radius: 50%;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+/* Exemplo de efeito ativo usando translate */
+.switch.active {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+}

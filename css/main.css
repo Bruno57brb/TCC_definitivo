@@ -1,0 +1,47 @@
+.card-content i {
+    font-size: 48px;
+    color: white;
+  }
+
+  .card-content h5 {
+    margin-top: 0;
+    color: white;
+  }
+
+  .card-action {
+    text-align: center;
+    padding-bottom: 10px;
+  }
+
+  .card-action {
+    text-align: center;
+    padding-bottom: 10px;
+    transition: all 0.3s ease;
+    /* Transição suave */
+  }
+
+  .card-action:hover {
+    transform: translateY(-5px);
+    /* Levanta o card */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    /* Adiciona uma sombra mais forte */
+    background-color: none;
+    /* Remove o fundo preto */
+  }
+
+  .custom-card {
+    transition: all 0.3s ease;
+    /* Transição suave para o card */
+  }
+
+  .custom-card:hover {
+    transform: scale(1.05);
+    /* Aumenta levemente o card */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    /* Sombra mais visível */
+  }
+
+  .custom-card {
+    height: 200px;
+  }
+  

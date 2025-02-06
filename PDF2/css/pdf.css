@@ -1,0 +1,78 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 10px; /* Reduzido para evitar vazamento */
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Impede que o conteúdo vaze */
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.header img {
+    max-width: 150px;
+    margin-bottom: 10px;
+    margin-top: -10%;
+    position: relative;
+}
+
+.info {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    word-wrap: break-word; /* Quebra palavras longas */
+    overflow: hidden; /* Impede que o conteúdo vaze */
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* Espaçamento entre os itens */
+}
+
+.info h3 {
+    margin-top: 0;
+    font-size: 16px; /* Tamanho fixo para o título */
+}
+
+.info p {
+    margin: 0; /* Remove margens padrão */
+    font-size: 14px; /* Tamanho fixo para o texto */
+    white-space: nowrap; /* Evita quebras de linha */
+    overflow: hidden; /* Oculta conteúdo que ultrapassa */
+    text-overflow: ellipsis; /* Adiciona "..." se o texto for cortado */
+}
+
+.footer {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 1px solid #ccc;
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 5px;
+    position: relative;
+    top: 20%;
+}
+
+.frente {
+    height: 300px;
+    position: relative;
+    margin-top: 15%;
+}
+
+.verso {
+    height: 300px;
+    position: relative;
+    margin-top: 0%;
+    left: 15%;
+}
