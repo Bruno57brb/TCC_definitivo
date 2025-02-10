@@ -6,67 +6,74 @@ $conexao = conectar();
 // Obtém a data atual no formato 'YYYY-MM-DD'
 $dataAtual = date('Y-m-d');
 
-// Consulta SQL para buscar apenas os registros do dia atual
-$sql = "SELECT * FROM registros WHERE data = '$dataAtual'";
+// Consulta SQL com JOIN para buscar dados das tabelas registros e alunos
+$sql = "SELECT 
+            registros.cpf_aluno, 
+            alunos.nome, 
+            alunos.matricula, 
+            alunos.turma, 
+            registros.motivo, 
+            registros.tipo, 
+            registros.horario
+        FROM registros
+        INNER JOIN alunos ON registros.cpf_aluno = alunos.cpf
+        WHERE registros.data = '$dataAtual'";
 $result = $conexao->query($sql);
 
 // Verifica se há registros cadastrados no dia atual
 if ($result->num_rows > 0) {
-
     // Inicia a construção do HTML para o PDF com CSS incorporado
     $html = "
     <!DOCTYPE html>
-<html lang='pt-br'>
-<head>
-    <meta charset='UTF-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>Relatório de Alunos - " . date('d/m/Y') . "</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        h2 {
-            text-align: center;
-            color: #2e7d32;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        table, th, td {
-            border: 1px solid #ccc;
-        }
-        th, td {
-            padding: 8px 12px;
-            text-align: left;
-        }
-        th {
-            background-color: #4caf50;
-            color: #ffffff;
-        }
-        td {
-            color: #1b5e20;
-        }
-        tr:nth-child(even) {
-            background-color: #c8e6c9;
-        }
-    </style>
-</head>
-<body>
-    <h2>Relatório  - " . date('d/m/Y') . "</h2>
-    <table>
-        <tr>
-            <th>CPF</th>
-            <th>Nome do Aluno</th>
-            <th>Matrícula</th>
-            <th>Turma</th>
-            <th>Motivo</th>
-            <th>Tipo</th>
-            <th>Data</th>
-            <th>Horário</th>
-        </tr>
-";
+    <html lang='pt-br'>
+    <head>
+        <meta charset='UTF-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+        <title>Relatório de Alunos - " . date('d/m/Y') . "</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+            }
+            h2 {
+                text-align: center;
+                color: #2e7d32;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+            }
+            table, th, td {
+                border: 1px solid #ccc;
+            }
+            th, td {
+                padding: 8px 12px;
+                text-align: left;
+            }
+            th {
+                background-color: #4caf50;
+                color: #ffffff;
+            }
+            td {
+                color: #1b5e20;
+            }
+            tr:nth-child(even) {
+                background-color: #c8e6c9;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Relatório - " . date('d/m/Y') . "</h2>
+        <table>
+            <tr>
+                <th>CPF</th>
+                <th>Nome do Aluno</th>
+                <th>Matrícula</th>
+                <th>Turma</th>
+                <th>Motivo</th>
+                <th>Tipo</th>
+                <th>Horário</th>
+            </tr>";
 
     // Loop para percorrer os resultados e gerar as linhas da tabela
     while ($dados = $result->fetch_assoc()) {
@@ -77,8 +84,7 @@ if ($result->num_rows > 0) {
             <td>" . $dados['matricula'] . "</td>
             <td>" . $dados['turma'] . "</td>
             <td>" . $dados['motivo'] . "</td>
-            <td>" . $dados['tipo'] . "</td>
-            <td>" . date('d/m/Y', strtotime($dados['data'])) . "</td>
+            <td>" . $dados['tipo'] . "</td>    
             <td>" . $dados['horario'] . "</td>
         </tr>";
     }
@@ -100,7 +106,7 @@ $PDF = new Dompdf(['enable_remote' => true]);
 $PDF->loadHtml($html);
 
 // Define o tamanho e a orientação do papel
-$PDF->setPaper('A4', 'portrait');
+$PDF->setPaper('A3', 'portrait');
 
 // Renderiza o PDF
 $PDF->render();

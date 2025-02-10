@@ -3,13 +3,22 @@
 require_once "conexao.php";
 $conexao = conectar();
 
-// Consulta SQL para buscar todos os veículos cadastrados
-$sql = "SELECT * FROM registros";
+// Consulta SQL com JOIN para buscar dados das tabelas registros e alunos
+$sql = "SELECT 
+            registros.cpf_aluno, 
+            alunos.nome, 
+            alunos.matricula, 
+            alunos.turma, 
+            registros.motivo, 
+            registros.tipo, 
+            registros.data, 
+            registros.horario
+        FROM registros
+        INNER JOIN alunos ON registros.cpf_aluno = alunos.cpf";
 $result = $conexao->query($sql);
 
-// Verifica se há veículos cadastrados
+// Verifica se há registros cadastrados
 if ($result->num_rows > 0) {
-
     // Inicia a construção do HTML para o PDF com CSS incorporado
     $html = "
     <!DOCTYPE html>
@@ -58,13 +67,11 @@ if ($result->num_rows > 0) {
             <th>Nome do Aluno</th>
             <th>Matrícula</th>
             <th>Turma</th>
-           <th>motivo</th>
+           <th>Motivo</th>
           <th>Tipo</th>
           <th>Data</th>
-          <th>Horario</th>
-     
-        </tr>
-";
+          <th>Horário</th>
+        </tr>";
 
     // Loop para percorrer os resultados e gerar as linhas da tabela
     while ($dados = $result->fetch_assoc()) {
@@ -77,23 +84,19 @@ if ($result->num_rows > 0) {
         <td>" . $dados['turma'] . "</td>
         <td>" . $dados['motivo'] . "</td>
         <td>" . $dados['tipo'] . "</td>
-        <td>" . $dados['data'] . "</td>
+        <td>" . date('d/m/Y', strtotime($dados['data'])) . "</td>
         <td>" . $dados['horario'] . "</td>
-       
-
-
     </tr>";
     }
 
     $html .= "</table></body></html>";
 } else {
-    // Caso não haja veículos cadastrados
-    $html = "<p>nenhuma entrada ou saida registrada.</p>";
+    // Caso não haja registros cadastrados
+    $html = "<p style='text-align: center; font-size: 18px; color: red;'>Nenhuma entrada ou saída registrada.</p>";
 }
 
 // Carrega a biblioteca Dompdf
 use Dompdf\Dompdf;
-
 require_once 'dompdf/autoload.inc.php';
 
 // Inicializa o objeto Dompdf
@@ -103,7 +106,7 @@ $PDF = new Dompdf(['enable_remote' => true]);
 $PDF->loadHtml($html);
 
 // Define o tamanho e a orientação do papel
-$PDF->setPaper('A4', 'portrait');
+$PDF->setPaper('A3', 'portrait');
 
 // Renderiza o PDF
 $PDF->render();

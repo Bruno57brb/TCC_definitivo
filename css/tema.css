@@ -20,6 +20,12 @@
 .dark-theme .tabela th{
     color: black;
 }
+.dark-theme .tabela td{
+    color: white;
+}
+.dark-theme .titulo {
+    color: black;
+}
 
 .dark-theme .aluno td{
     color: white;

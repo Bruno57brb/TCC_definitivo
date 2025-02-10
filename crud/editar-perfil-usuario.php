@@ -11,12 +11,76 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
 </head>
 <body>
+<div id="app">
     <?php
     session_start();
     include_once "../header2.php";
     require_once "../conexao/conexao.php";
     $conexao = conectar();
     ?>
+<style>
+      <?php
+      include "../css/tema.css";
+      ?>
+    </style>
+
+<div class="switch-container">
+  <div class="cord" id="cord"></div>
+  <div id="toggle-theme" class="switch" onclick="toggleTheme()">
+    <span id="themeIcon"><i class="fas fa-sun"></i></span> <!-- Ícone do sol -->
+  </div>
+</div>
+
+<!-- Script para alternar o tema -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const themeButton = document.getElementById('toggle-theme');
+    const appContainer = document.getElementById('app'); // Contêiner principal
+    const cord = document.getElementById('cord');       // Elemento da corda (se existir)
+    const themeIcon = document.getElementById('themeIcon'); // Elemento que contém o ícone
+
+    // Verifica o tema salvo no localStorage
+    const savedTheme = localStorage.getItem('theme');
+
+    // Aplica o tema salvo ou o tema padrão (light)
+    if (savedTheme === 'dark') {
+        appContainer.classList.add('dark-theme');
+        themeButton.classList.add('dark', 'active');
+        themeIcon.innerHTML = '<i class="fas fa-moon"></i>'; // Ícone da lua para modo escuro
+    } else {
+        appContainer.classList.add('light-theme');
+        themeButton.classList.add('light');
+        themeIcon.innerHTML = '<i class="fas fa-sun"></i>'; // Ícone do sol para modo claro
+    }
+
+    // Alternar tema ao clicar no botão
+    themeButton.addEventListener('click', function () {
+        // Efeito de corda alongada ao puxar (se o elemento cord existir)
+        if (cord) {
+            cord.style.height = '50px'; // Aumenta a corda
+            setTimeout(() => {
+                cord.style.height = '20px'; // Volta ao tamanho original
+            }, 300);
+        }
+
+        // Alternar o tema e atualizar localStorage
+        if (appContainer.classList.contains('dark-theme')) {
+            appContainer.classList.replace('dark-theme', 'light-theme');
+            themeButton.classList.replace('dark', 'light');
+            localStorage.setItem('theme', 'light');
+            themeIcon.innerHTML = '<i class="fas fa-sun"></i>';
+        } else {
+            appContainer.classList.replace('light-theme', 'dark-theme');
+            themeButton.classList.replace('light', 'dark');
+            localStorage.setItem('theme', 'dark');
+            themeIcon.innerHTML = '<i class="fas fa-moon"></i>';
+        }
+        themeButton.classList.toggle('active');
+    });
+});
+</script>
+
+
 
     <main class="container">
         <h1>Servidores</h1>
@@ -28,6 +92,7 @@
         </a>
         <table class="highlight">
             <thead>
+            <tr class="tabela">
                 <tr>
                     <th>SIAPE</th>
                     <th>Nome</th>
@@ -43,11 +108,12 @@
                 if ($resultado) {
                     while ($linha = mysqli_fetch_assoc($resultado)) {
                         ?>
-                        <tr>
+                         <tr class="tabela">
                             <td><?php echo $linha['SIAPE']; ?></td>
                             <td><?php echo $linha['nome']; ?></td>
                             <td><?php echo $linha['email']; ?></td>
                             <td>
+                                
                                 <!-- Botão para excluir -->
                                 <a href="#modalExcluir<?php echo $linha['SIAPE']; ?>" class="btn-floating btn-small waves-effect waves-light red modal-trigger">
                                     <i class="material-icons">delete</i>

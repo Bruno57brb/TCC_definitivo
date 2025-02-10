@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
@@ -13,6 +14,7 @@
     <link href="../css/bootstrap.css" rel="stylesheet">
 
     <title>LOGIN</title>
+    <div id="app">
     <style>
  <?php
      include_once"../css/cadastrar_servidor.css";
@@ -20,8 +22,6 @@
    </style>
 </s>
 
-<body>
-<div id="app">
 <style>
       <?php
       include "../css/tema.css";
@@ -83,14 +83,14 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 </script>
+<body>
     <header>
         <div class="header-container">
             <div class="header-text">
                 <h1>SIGAE</h1>
-                
-               
-    
-                <p>Sistema Integrado de Gerenciamento da Assistência Estudantil</p>
+                <p class="sigae">
+                Sistema Integrado de Gerenciamento da Assistência Estudantil    
+                </>
             </div>
             <div class="header-logo">
                 <img class="right" src="../img/assistencia_estudantil.png" alt="Logo da Assistência Estudantil">
@@ -103,7 +103,8 @@ document.addEventListener('DOMContentLoaded', function () {
                
                 <div class="col s12 m8 offset-m2 l6 offset-l3">
                     <form action="cadastrar-servidor.php" method="POST">
-                        <h5 class="center-align">CADASTRAR NOVO SERVIDOR</h5><br>
+                    <h5 class="titulo"
+                         class="center-align">CADASTRAR NOVO SERVIDOR</h5><br>
 
                         <div class="input-field">
                             <input type="text" id="nome" name="Nome" class="validate" required autofocus>
@@ -128,10 +129,11 @@ document.addEventListener('DOMContentLoaded', function () {
                             <select id="Perfil" name="Perfil" required>
                                 <option value="" disabled selected>Selecione a Categoria</option>
                                 <option value="1">Coordenação</option>
-                                <option value="2">Nutricionista</option>
-                                <option value="3">Psicólogo(a)</option>
-                                <option value="4">Enfermeiro(a)</option>
-                                <option value="5">Médico(a)</option>
+                                <option value="2">Assistente</option>
+                                <option value="3">Nutricionista</option>
+                                <option value="4">Psicólogo(a)</option>
+                                <option value="5">Enfermeiro(a)</option>
+                                <option value="6">Médico(a)</option>
                             </select>
                         </div>
 

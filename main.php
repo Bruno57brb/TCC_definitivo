@@ -384,7 +384,7 @@ document.addEventListener('DOMContentLoaded', function () {
       <h5>Calendário</h5>
     </div>
     <div class="card-action">
-      <a href="calendario/calendario.php" class="white-text">Acessar</a>
+      <a href="#" class="white-text">Acessar</a>
     </div>
   </div>
 </div>

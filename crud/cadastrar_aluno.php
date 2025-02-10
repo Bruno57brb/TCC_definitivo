@@ -15,10 +15,8 @@
 
     <title>LOGIN</title>
     <div id="app">
-    <style>
-        
+    <style>   
  <?php
- 
      include_once"../css/cadastrar_servidor.css";
    ?>
    </style>
@@ -105,7 +103,8 @@ document.addEventListener('DOMContentLoaded', function () {
                
                 <div class="col s12 m8 offset-m2 l6 offset-l3">
                     <form action="cadastrar-aluno.php" method="POST">
-                        <h5 class="center-align">CADASTRARO DE ALUNO</h5>
+                           <h5 class="titulo"
+                    class="center-align">CADASTRARO DE ALUNO</h5>
 
                         <div class="input-field">
                             <input type="text" id="nome" name="Nome" class="validate" required autofocus>

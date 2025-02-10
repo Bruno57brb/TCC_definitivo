@@ -90,7 +90,11 @@ document.addEventListener('DOMContentLoaded', function () {
             <i class="material-icons right">add</i>Inserir
         </a>
 
-        
+      
+      <a href="PDF3/index.php" class=" orange waves-effect waves-light btn">
+          <i class="material-icons right"></i> Gerar Relatório
+      </a>
+
         <a href='main.php' class="red 3 waves-effect waves-light btn right">
             <i class="material-icons right">arrow_back</i>Voltar
         </a>
